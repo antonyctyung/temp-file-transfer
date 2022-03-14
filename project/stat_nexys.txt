@@ -1,0 +1,177 @@
++ ls -hl ./clang/bin/rc6_test
+-rwxr-xr-x 1 debian debian 451K Dec  6 00:43 ./clang/bin/rc6_test
++ uname -a
+Linux debian 5.14.12-dirty #1 SMP Sun Nov 7 19:30:46 PST 2021 riscv64 GNU/Linux
++ lscpu
+Architecture:        riscv64
+Byte Order:          Little Endian
+CPU(s):              1
+On-line CPU(s) list: 0
+Thread(s) per core:  1
+Core(s) per socket:  1
+Socket(s):           1
+L1d cache:           16 KiB
+L1i cache:           16 KiB
++ lsblk
+NAME        MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+mmcblk0     179:0    0 29.8G  0 disk
+├─mmcblk0p1 179:1    0  400M  0 part /boot
+└─mmcblk0p2 179:2    0 29.4G  0 part /
++ cat /proc/meminfo
+MemTotal:          96280 kB
+MemFree:           19624 kB
+MemAvailable:      69700 kB
+Buffers:            3480 kB
+Cached:            47788 kB
+SwapCached:          660 kB
+Active:            25720 kB
+Inactive:          35840 kB
+Active(anon):        520 kB
+Inactive(anon):     9924 kB
+Active(file):      25200 kB
+Inactive(file):    25916 kB
+Unevictable:           0 kB
+Mlocked:               0 kB
+SwapTotal:        262140 kB
+SwapFree:         258300 kB
+Dirty:               680 kB
+Writeback:             0 kB
+AnonPages:          9648 kB
+Mapped:            16240 kB
+Shmem:               152 kB
+KReclaimable:       3760 kB
+Slab:              10928 kB
+SReclaimable:       3760 kB
+SUnreclaim:         7168 kB
+KernelStack:        1008 kB
+PageTables:          684 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:      310280 kB
+Committed_AS:     119736 kB
+VmallocTotal:   67108863 kB
+VmallocUsed:         112 kB
+VmallocChunk:          0 kB
+Percpu:               96 kB
++ free -h
+               total        used        free      shared  buff/cache   available
+Mem:            94Mi        21Mi        18Mi       0.0Ki        54Mi        68Mi
+Swap:          255Mi       3.0Mi       252Mi
++ time python2 ./py/rc6.py
+291.74user 1.69system 5:07.98elapsed 95%CPU (0avgtext+0avgdata 6340maxresident)k
+0inputs+0outputs (1major+984minor)pagefaults 0swaps
++ time ./clang/bin/rc6_test
+Command exited with non-zero status 1
+3.33user 0.07system 0:03.46elapsed 98%CPU (0avgtext+0avgdata 788maxresident)k
+0inputs+0outputs (0major+133minor)pagefaults 0swaps
++ /usr/bin/time -v ./py/rc6.py
+        Command being timed: "./py/rc6.py"
+        User time (seconds): 305.86
+        System time (seconds): 1.13
+        Percent of CPU this job got: 98%
+        Elapsed (wall clock) time (h:mm:ss or m:ss): 5:11.91
+        Average shared text size (kbytes): 0
+        Average unshared data size (kbytes): 0
+        Average stack size (kbytes): 0
+        Average total size (kbytes): 0
+        Maximum resident set size (kbytes): 6352
+        Average resident set size (kbytes): 0
+        Major (requiring I/O) page faults: 2
+        Minor (reclaiming a frame) page faults: 1001
+        Voluntary context switches: 3
+        Involuntary context switches: 2854
+        Swaps: 0
+        File system inputs: 0
+        File system outputs: 0
+        Socket messages sent: 0
+        Socket messages received: 0
+        Signals delivered: 0
+        Page size (bytes): 4096
+        Exit status: 0
++ /usr/bin/time -v ./clang/bin/rc6_test
+Command exited with non-zero status 1
+        Command being timed: "./clang/bin/rc6_test"
+        User time (seconds): 3.31
+        System time (seconds): 0.06
+        Percent of CPU this job got: 99%
+        Elapsed (wall clock) time (h:mm:ss or m:ss): 0:03.41
+        Average shared text size (kbytes): 0
+        Average unshared data size (kbytes): 0
+        Average stack size (kbytes): 0
+        Average total size (kbytes): 0
+        Maximum resident set size (kbytes): 788
+        Average resident set size (kbytes): 0
+        Major (requiring I/O) page faults: 0
+        Minor (reclaiming a frame) page faults: 133
+        Voluntary context switches: 1
+        Involuntary context switches: 22
+        Swaps: 0
+        File system inputs: 0
+        File system outputs: 0
+        Socket messages sent: 0
+        Socket messages received: 0
+        Signals delivered: 0
+        Page size (bytes): 4096
+       Exit status: 1
++ perf stat -ddd ./py/rc6.py
+
+ Performance counter stats for './py/rc6.py':
+
+        292,931.84 msec task-clock                #    0.985 CPUs utilized
+             2,629      context-switches          #    8.975 /sec
+                 0      cpu-migrations            #    0.000 /sec
+               986      page-faults               #    3.366 /sec
+    14,645,682,226      cycles                    #    0.050 GHz
+     3,994,095,525      instructions              #    0.27  insn per cycle
+   <not supported>      branches
+   <not supported>      branch-misses
+   <not supported>      L1-dcache-loads
+   <not supported>      L1-dcache-load-misses
+   <not supported>      LLC-loads
+   <not supported>      LLC-load-misses
+   <not supported>      L1-icache-loads
+   <not supported>      L1-icache-load-misses
+   <not supported>      dTLB-loads
+   <not supported>      dTLB-load-misses
+   <not supported>      iTLB-loads
+   <not supported>      iTLB-load-misses
+   <not supported>      L1-dcache-prefetches
+   <not supported>      L1-dcache-prefetch-misses
+
+     297.293842817 seconds time elapsed
+
+     291.033561000 seconds user
+       1.687300000 seconds sys
+
+
++ perf stat -ddd ./clang/bin/rc6_test
+
+ Performance counter stats for './clang/bin/rc6_test':
+
+          3,404.46 msec task-clock                #    0.985 CPUs utilized
+                24      context-switches          #    7.050 /sec
+                 0      cpu-migrations            #    0.000 /sec
+               112      page-faults               #   32.898 /sec
+       170,213,697      cycles                    #    0.050 GHz
+        77,858,363      instructions              #    0.46  insn per cycle
+   <not supported>      branches
+   <not supported>      branch-misses
+   <not supported>      L1-dcache-loads
+   <not supported>      L1-dcache-load-misses
+   <not supported>      LLC-loads
+   <not supported>      LLC-load-misses
+   <not supported>      L1-icache-loads
+   <not supported>      L1-icache-load-misses
+   <not supported>      dTLB-loads
+   <not supported>      dTLB-load-misses
+   <not supported>      iTLB-loads
+   <not supported>      iTLB-load-misses
+   <not supported>      L1-dcache-prefetches
+   <not supported>      L1-dcache-prefetch-misses
+
+       3.457051933 seconds time elapsed
+
+       3.348469000 seconds user
+       0.095330000 seconds sys
+ 
