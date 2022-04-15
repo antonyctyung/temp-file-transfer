@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-I. -lpthread
+CFLAGS=-I.
 DEPS = rc6.h
 ODIR=obj
 BDIR=bin
@@ -10,7 +10,7 @@ $(ODIR)/%.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 rc6_test: $(OBJ)
-	$(CC) -o $(BDIR)/$@ $^ $(CFLAGS)
+	$(CC) -o $(BDIR)/$@ $^ $(CFLAGS) -lpthread
 
 .PHONY: clean
 
