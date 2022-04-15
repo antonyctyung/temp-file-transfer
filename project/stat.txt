@@ -1,5 +1,5 @@
 + ls -hl ./clang/bin/rc6_test
--rwxrwxr-x 1 atnqty atnqty 13K Apr 14 17:47 ./clang/bin/rc6_test
+-rwxr-xr-x 1 root root 13K Apr 14 18:41 ./clang/bin/rc6_test
 + uname -a
 Linux atnqty-Lenovo-YOGA-710-15IKB 4.15.0-175-generic #184-Ubuntu SMP Thu Mar 24 17:48:36 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
 + lscpu
@@ -17,7 +17,7 @@ CPU family:          6
 Model:               142
 Model name:          Intel(R) Core(TM) i7-7500U CPU @ 2.70GHz
 Stepping:            9
-CPU MHz:             3500.029
+CPU MHz:             2839.413
 CPU max MHz:         3500.0000
 CPU min MHz:         400.0000
 BogoMIPS:            5799.77
@@ -71,36 +71,36 @@ sda      8:0    0 238.5G  0 disk
 └─sda7   8:7    0  64.3G  0 part /
 + cat /proc/meminfo
 MemTotal:       16133184 kB
-MemFree:         9641456 kB
-MemAvailable:   11633884 kB
-Buffers:          305788 kB
-Cached:          2670948 kB
+MemFree:         8740708 kB
+MemAvailable:   11044240 kB
+Buffers:          320560 kB
+Cached:          2994556 kB
 SwapCached:            0 kB
-Active:          4240716 kB
-Inactive:        1817164 kB
-Active(anon):    3077064 kB
-Inactive(anon):   791832 kB
-Active(file):    1163652 kB
-Inactive(file):  1025332 kB
-Unevictable:          68 kB
-Mlocked:              68 kB
+Active:          4908124 kB
+Inactive:        2013512 kB
+Active(anon):    3602496 kB
+Inactive(anon):   825976 kB
+Active(file):    1305628 kB
+Inactive(file):  1187536 kB
+Unevictable:         104 kB
+Mlocked:             104 kB
 SwapTotal:       2097148 kB
 SwapFree:        2097148 kB
-Dirty:              1556 kB
+Dirty:               264 kB
 Writeback:             0 kB
-AnonPages:       3081048 kB
-Mapped:           932512 kB
-Shmem:            795416 kB
-Slab:             200604 kB
-SReclaimable:     121284 kB
-SUnreclaim:        79320 kB
-KernelStack:       21716 kB
-PageTables:        78164 kB
+AnonPages:       3606752 kB
+Mapped:          1052660 kB
+Shmem:            829632 kB
+Slab:             220568 kB
+SReclaimable:     135060 kB
+SUnreclaim:        85508 kB
+KernelStack:       23472 kB
+PageTables:        87940 kB
 NFS_Unstable:          0 kB
 Bounce:                0 kB
 WritebackTmp:          0 kB
 CommitLimit:    10163740 kB
-Committed_AS:   12620420 kB
+Committed_AS:   14227468 kB
 VmallocTotal:   34359738367 kB
 VmallocUsed:           0 kB
 VmallocChunk:          0 kB
@@ -115,21 +115,21 @@ HugePages_Free:        0
 HugePages_Rsvd:        0
 HugePages_Surp:        0
 Hugepagesize:       2048 kB
-DirectMap4k:      367004 kB
-DirectMap2M:     7731200 kB
-DirectMap1G:     9437184 kB
+DirectMap4k:      383388 kB
+DirectMap2M:     8763392 kB
+DirectMap1G:     8388608 kB
 + free -h
               total        used        free      shared  buff/cache   available
-Mem:            15G        3.2G        9.2G        776M        3.0G         11G
+Mem:            15G        3.8G        8.3G        810M        3.3G         10G
 Swap:          2.0G          0B        2.0G
 + time python2 ./py/rc6.py
-0.31user 0.00system 0:00.31elapsed 99%CPU (0avgtext+0avgdata 7744maxresident)k
-0inputs+0outputs (0major+856minor)pagefaults 0swaps
+0.34user 0.00system 0:00.35elapsed 100%CPU (0avgtext+0avgdata 7764maxresident)k
+0inputs+0outputs (0major+857minor)pagefaults 0swaps
 + time ./clang/bin/rc6_test
 *** stack smashing detected ***: <unknown> terminated
 Command terminated by signal 6
-0.01user 0.02system 0:00.11elapsed 30%CPU (0avgtext+0avgdata 9036maxresident)k
-0inputs+0outputs (0major+1936minor)pagefaults 0swaps
+0.01user 0.02system 0:00.12elapsed 30%CPU (0avgtext+0avgdata 9184maxresident)k
+0inputs+0outputs (0major+1941minor)pagefaults 0swaps
 + /usr/bin/time -v ./py/rc6.py
 /usr/bin/time: cannot run ./py/rc6.py: Permission denied
 Command exited with non-zero status 126
@@ -142,10 +142,10 @@ Command exited with non-zero status 126
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 988
+	Maximum resident set size (kbytes): 1044
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 24
+	Minor (reclaiming a frame) page faults: 25
 	Voluntary context switches: 1
 	Involuntary context switches: 0
 	Swaps: 0
@@ -160,20 +160,20 @@ Command exited with non-zero status 126
 *** stack smashing detected ***: <unknown> terminated
 Command terminated by signal 6
 	Command being timed: "./clang/bin/rc6_test"
-	User time (seconds): 0.02
+	User time (seconds): 0.01
 	System time (seconds): 0.02
-	Percent of CPU this job got: 35%
+	Percent of CPU this job got: 27%
 	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.12
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 9044
+	Maximum resident set size (kbytes): 9140
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 1931
-	Voluntary context switches: 1025
-	Involuntary context switches: 6
+	Minor (reclaiming a frame) page faults: 1932
+	Voluntary context switches: 1149
+	Involuntary context switches: 1
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 0
@@ -183,6 +183,37 @@ Command terminated by signal 6
 	Page size (bytes): 4096
 	Exit status: 0
 + perf stat -ddd ./py/rc6.py
-./stat_script.sh: 16: ./stat_script.sh: perf: not found
+Workload failed: Permission denied
 + perf stat -ddd ./clang/bin/rc6_test
-./stat_script.sh: 17: ./stat_script.sh: perf: not found
+*** stack smashing detected ***: <unknown> terminated
+./clang/bin/rc6_test: Aborted
+
+ Performance counter stats for './clang/bin/rc6_test':
+
+         49.778640      task-clock (msec)         #    0.378 CPUs utilized          
+               235      context-switches          #    0.005 M/sec                  
+                 6      cpu-migrations            #    0.121 K/sec                  
+             1,923      page-faults               #    0.039 M/sec                  
+       156,881,325      cycles                    #    3.152 GHz                      (5.25%)
+       108,777,962      instructions              #    0.69  insn per cycle           (17.89%)
+        16,253,553      branches                  #  326.517 M/sec                    (30.29%)
+           251,657      branch-misses             #    1.55% of all branches          (42.82%)
+        36,407,339      L1-dcache-loads           #  731.385 M/sec                    (79.87%)
+         3,991,308      L1-dcache-load-misses     #   10.96% of all L1-dcache hits    (84.94%)
+           780,497      LLC-loads                 #   15.679 M/sec                    (66.58%)
+            61,613      LLC-load-misses           #    7.89% of all LL-cache hits     (57.18%)
+   <not supported>      L1-icache-loads                                             
+         2,673,719      L1-icache-load-misses                                         (20.13%)
+        44,717,145      dTLB-loads                #  898.320 M/sec                    (9.81%)
+            48,593      dTLB-load-misses          #    0.11% of all dTLB cache hits   (3.14%)
+     <not counted>      iTLB-loads                                                    (0.00%)
+     <not counted>      iTLB-load-misses                                              (0.00%)
+   <not supported>      L1-dcache-prefetches                                        
+   <not supported>      L1-dcache-prefetch-misses                                   
+
+       0.131654164 seconds time elapsed
+
+Some events weren't counted. Try disabling the NMI watchdog:
+	echo 0 > /proc/sys/kernel/nmi_watchdog
+	perf stat ...
+	echo 1 > /proc/sys/kernel/nmi_watchdog

@@ -2,6 +2,10 @@
 #include "rc6.h"
 #include "pthread.h" 
 #include <stdio.h>
+#include <stdlib.h>
+
+#define ROUND 1000
+#define THRDCNT 8
 
 void *uut()
 {
@@ -19,20 +23,21 @@ void *uut()
 
 int main()
 {
-    const int ROUND = 1000;
-    pthread_t pthrd[8];
+    pthread_t *pthrd;
+    pthrd = malloc(THRDCNT*sizeof(pthread_t));
 
-    for (int i = 0; i < ROUND/8; i++)
+    for (int i = 0; i < ROUND/THRDCNT; i++)
     {
-        for (int j = 0; j < 8; j++)
+        for (int j = 0; j < THRDCNT; j++)
         {
             pthread_create(&(pthrd[i]), NULL, uut, NULL);
         }
-        for (int j = 0; j < 8; j++)
+        for (int j = 0; j < THRDCNT; j++)
         {
             pthread_join(pthrd[i], NULL);
         }
         printf("%3d/125\n", i+1);
     }
     // for (int i = 0; i < ROUND; i++) uut();
+    return 1;
 }
