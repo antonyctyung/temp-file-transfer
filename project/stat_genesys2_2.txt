@@ -1,0 +1,334 @@
++ ls -hl ./clang/bin/rc6_test
+-rwxr-xr-x 1 debian debian 13K Apr 15 03:46 ./clang/bin/rc6_test
++ uname -a
+Linux debian 5.12.7-dirty #1 SMP Tue Jun 1 11:28:12 PDT 2021 riscv64 GNU/Linux
++ lscpu
+Architecture:        riscv64
+Byte Order:          Little Endian
+CPU(s):              2
+On-line CPU(s) list: 0,1
++ lsblk
+NAME        MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+mmcblk0     179:0    0  7.4G  0 disk 
+├─mmcblk0p1 179:1    0  400M  0 part /boot
+└─mmcblk0p2 179:2    0    7G  0 part /
++ cat /proc/meminfo
+MemTotal:        1000740 kB
+MemFree:          880548 kB
+MemAvailable:     958376 kB
+Buffers:            8644 kB
+Cached:            77876 kB
+SwapCached:            0 kB
+Active:            51016 kB
+Inactive:          46652 kB
+Active(anon):        128 kB
+Inactive(anon):    12240 kB
+Active(file):      50888 kB
+Inactive(file):    34412 kB
+Unevictable:           0 kB
+Mlocked:               0 kB
+SwapTotal:        262140 kB
+SwapFree:         262140 kB
+Dirty:                76 kB
+Writeback:             0 kB
+AnonPages:         11172 kB
+Mapped:            18284 kB
+Shmem:              1224 kB
+KReclaimable:       6984 kB
+Slab:              15388 kB
+SReclaimable:       6984 kB
+SUnreclaim:         8404 kB
+KernelStack:        1088 kB
+PageTables:          616 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:      762508 kB
+Committed_AS:     116020 kB
+VmallocTotal:   67108863 kB
+VmallocUsed:         112 kB
+VmallocChunk:          0 kB
+Percpu:              168 kB
++ free -h
+               total        used        free      shared  buff/cache   available
+Mem:           977Mi        26Mi       859Mi       1.0Mi        91Mi       935Mi
+Swap:          255Mi          0B       255Mi
++ /usr/bin/time -v ./py/rc6.py
+	Command being timed: "./py/rc6.py"
+	User time (seconds): 122.67
+	System time (seconds): 0.29
+	Percent of CPU this job got: 99%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:03.05
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 6344
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 1000
+	Voluntary context switches: 1
+	Involuntary context switches: 234
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
++ /usr/bin/time -v taskset -c 0 ./clang/bin/rc6_test
+Command exited with non-zero status 1
+	Command being timed: "taskset -c 0 ./clang/bin/rc6_test"
+	User time (seconds): 1.56
+	System time (seconds): 0.05
+	Percent of CPU this job got: 98%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.64
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 1384
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 214
+	Voluntary context switches: 4
+	Involuntary context switches: 10
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1
++ /usr/bin/time -v taskset -c 0 ./clang/bin/rc6_test_pth
+Command exited with non-zero status 1
+	Command being timed: "taskset -c 0 ./clang/bin/rc6_test_pth"
+	User time (seconds): 1.30
+	System time (seconds): 1.82
+	Percent of CPU this job got: 66%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.74
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 8684
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 2043
+	Voluntary context switches: 256
+	Involuntary context switches: 320
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1
++ /usr/bin/time -v ./clang/bin/rc6_test
+Command exited with non-zero status 1
+	Command being timed: "./clang/bin/rc6_test"
+	User time (seconds): 1.56
+	System time (seconds): 0.02
+	Percent of CPU this job got: 99%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.59
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 1168
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 159
+	Voluntary context switches: 1
+	Involuntary context switches: 11
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1
++ /usr/bin/time -v ./clang/bin/rc6_test_pth
+Command exited with non-zero status 1
+	Command being timed: "./clang/bin/rc6_test_pth"
+	User time (seconds): 1.52
+	System time (seconds): 2.24
+	Percent of CPU this job got: 132%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:02.84
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 8680
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 1981
+	Voluntary context switches: 553
+	Involuntary context switches: 550
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1
++ perf stat -ddd ./py/rc6.py
+
+ Performance counter stats for './py/rc6.py':
+
+        123,507.84 msec task-clock:u              #    0.998 CPUs utilized          
+               358      context-switches:u        #    2.899 /sec                   
+                 1      cpu-migrations:u          #    0.008 /sec                   
+               947      page-faults:u             #    7.668 /sec                   
+    12,350,685,357      cycles:u                  #    0.100 GHz                    
+     3,707,288,431      instructions:u            #    0.30  insn per cycle         
+   <not supported>      branches:u                                                  
+   <not supported>      branch-misses:u                                             
+   <not supported>      L1-dcache-loads:u                                           
+   <not supported>      L1-dcache-load-misses:u                                     
+   <not supported>      LLC-loads:u                                                 
+   <not supported>      LLC-load-misses:u                                           
+   <not supported>      L1-icache-loads:u                                           
+   <not supported>      L1-icache-load-misses:u                                     
+   <not supported>      dTLB-loads:u                                                
+   <not supported>      dTLB-load-misses:u                                          
+   <not supported>      iTLB-loads:u                                                
+   <not supported>      iTLB-load-misses:u                                          
+   <not supported>      L1-dcache-prefetches:u                                      
+   <not supported>      L1-dcache-prefetch-misses:u                                   
+
+     123.721511090 seconds time elapsed
+
+     123.192582000 seconds user
+       0.315601000 seconds sys
+
+
++ perf stat -ddd taskset -c 0 ./clang/bin/rc6_test
+
+ Performance counter stats for 'taskset -c 0 ./clang/bin/rc6_test':
+
+          1,620.86 msec task-clock:u              #    0.987 CPUs utilized          
+                11      context-switches:u        #    6.787 /sec                   
+                 0      cpu-migrations:u          #    0.000 /sec                   
+               180      page-faults:u             #  111.052 /sec                   
+       162,082,481      cycles:u                  #    0.100 GHz                    
+        76,070,016      instructions:u            #    0.47  insn per cycle         
+   <not supported>      branches:u                                                  
+   <not supported>      branch-misses:u                                             
+   <not supported>      L1-dcache-loads:u                                           
+   <not supported>      L1-dcache-load-misses:u                                     
+   <not supported>      LLC-loads:u                                                 
+   <not supported>      LLC-load-misses:u                                           
+   <not supported>      L1-icache-loads:u                                           
+   <not supported>      L1-icache-load-misses:u                                     
+   <not supported>      dTLB-loads:u                                                
+   <not supported>      dTLB-load-misses:u                                          
+   <not supported>      iTLB-loads:u                                                
+   <not supported>      iTLB-load-misses:u                                          
+   <not supported>      L1-dcache-prefetches:u                                      
+   <not supported>      L1-dcache-prefetch-misses:u                                   
+
+       1.642264028 seconds time elapsed
+
+       1.555917000 seconds user
+       0.083352000 seconds sys
+
+
++ perf stat -ddd taskset -c 0 ./clang/bin/rc6_test_pth
+
+ Performance counter stats for 'taskset -c 0 ./clang/bin/rc6_test_pth':
+
+          5,355.98 msec task-clock:u              #    0.873 CPUs utilized          
+               608      context-switches:u        #  113.518 /sec                   
+                 1      cpu-migrations:u          #    0.187 /sec                   
+             2,006      page-faults:u             #  374.534 /sec                   
+       522,862,260      cycles:u                  #    0.098 GHz                    
+       145,523,157      instructions:u            #    0.28  insn per cycle         
+   <not supported>      branches:u                                                  
+   <not supported>      branch-misses:u                                             
+   <not supported>      L1-dcache-loads:u                                           
+   <not supported>      L1-dcache-load-misses:u                                     
+   <not supported>      LLC-loads:u                                                 
+   <not supported>      LLC-load-misses:u                                           
+   <not supported>      L1-icache-loads:u                                           
+   <not supported>      L1-icache-load-misses:u                                     
+   <not supported>      dTLB-loads:u                                                
+   <not supported>      dTLB-load-misses:u                                          
+   <not supported>      iTLB-loads:u                                                
+   <not supported>      iTLB-load-misses:u                                          
+   <not supported>      L1-dcache-prefetches:u                                      
+   <not supported>      L1-dcache-prefetch-misses:u                                   
+
+       6.134041137 seconds time elapsed
+
+       1.210989000 seconds user
+       2.888372000 seconds sys
+
+
++ perf stat -ddd ./clang/bin/rc6_test
+
+ Performance counter stats for './clang/bin/rc6_test':
+
+          1,591.33 msec task-clock:u              #    0.991 CPUs utilized          
+                 6      context-switches:u        #    3.770 /sec                   
+                 0      cpu-migrations:u          #    0.000 /sec                   
+               133      page-faults:u             #   83.578 /sec                   
+       159,130,335      cycles:u                  #    0.100 GHz                    
+        75,342,516      instructions:u            #    0.47  insn per cycle         
+   <not supported>      branches:u                                                  
+   <not supported>      branch-misses:u                                             
+   <not supported>      L1-dcache-loads:u                                           
+   <not supported>      L1-dcache-load-misses:u                                     
+   <not supported>      LLC-loads:u                                                 
+   <not supported>      LLC-load-misses:u                                           
+   <not supported>      L1-icache-loads:u                                           
+   <not supported>      L1-icache-load-misses:u                                     
+   <not supported>      dTLB-loads:u                                                
+   <not supported>      dTLB-load-misses:u                                          
+   <not supported>      iTLB-loads:u                                                
+   <not supported>      iTLB-load-misses:u                                          
+   <not supported>      L1-dcache-prefetches:u                                      
+   <not supported>      L1-dcache-prefetch-misses:u                                   
+
+       1.605394745 seconds time elapsed
+
+       1.557171000 seconds user
+       0.051772000 seconds sys
+
+
++ perf stat -ddd ./clang/bin/rc6_test_pth
+
+ Performance counter stats for './clang/bin/rc6_test_pth':
+
+          5,709.78 msec task-clock:u              #    1.563 CPUs utilized          
+               996      context-switches:u        #  174.437 /sec                   
+               319      cpu-migrations:u          #   55.869 /sec                   
+             1,956      page-faults:u             #  342.570 /sec                   
+       557,641,199      cycles:u                  #    0.098 GHz                    
+       151,255,740      instructions:u            #    0.27  insn per cycle         
+   <not supported>      branches:u                                                  
+   <not supported>      branch-misses:u                                             
+   <not supported>      L1-dcache-loads:u                                           
+   <not supported>      L1-dcache-load-misses:u                                     
+   <not supported>      LLC-loads:u                                                 
+   <not supported>      LLC-load-misses:u                                           
+   <not supported>      L1-icache-loads:u                                           
+   <not supported>      L1-icache-load-misses:u                                     
+   <not supported>      dTLB-loads:u                                                
+   <not supported>      dTLB-load-misses:u                                          
+   <not supported>      iTLB-loads:u                                                
+   <not supported>      iTLB-load-misses:u                                          
+   <not supported>      L1-dcache-prefetches:u                                      
+   <not supported>      L1-dcache-prefetch-misses:u                                   
+
+       3.652949466 seconds time elapsed
+
+       1.521654000 seconds user
+       3.325429000 seconds sys
+
+
