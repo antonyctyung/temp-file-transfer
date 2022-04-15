@@ -1,7 +1,7 @@
 #include <stdint.h>
 #include "rc6.h"
 #include "pthread.h" 
-
+#include <stdio.h>
 
 void *uut()
 {
@@ -32,6 +32,7 @@ int main()
         {
             pthread_join(pthrd[i], NULL);
         }
+        printf("%3d/125\n", i+1);
     }
-    return 1;
+    // for (int i = 0; i < ROUND; i++) uut();
 }
