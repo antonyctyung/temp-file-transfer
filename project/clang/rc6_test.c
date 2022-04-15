@@ -36,7 +36,7 @@ int main()
         {
             pthread_join(pthrd[i], NULL);
         }
-        printf("%3d/125\n", i+1);
+        // printf("%3d/125\n", i+1);
     }
     // for (int i = 0; i < ROUND; i++) uut();
     return 1;

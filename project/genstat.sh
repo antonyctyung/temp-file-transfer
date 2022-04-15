@@ -2,6 +2,7 @@
 cd clang
 mkdir bin
 mkdir obj
+make clean
 make
 cd ..
 ./stat_script.sh > stat.txt 2>&1

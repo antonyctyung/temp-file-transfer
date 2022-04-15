@@ -7,8 +7,8 @@ lsblk
 cat /proc/meminfo
 free -h
 
-time python2 ./py/rc6.py
-time ./clang/bin/rc6_test
+# time python2 ./py/rc6.py
+# time ./clang/bin/rc6_test
 
 /usr/bin/time -v ./py/rc6.py
 /usr/bin/time -v ./clang/bin/rc6_test
