@@ -12,8 +12,12 @@ free -h
 
 /usr/bin/time -v ./py/rc6.py
 /usr/bin/time -v taskset -c 0 ./clang/bin/rc6_test
+/usr/bin/time -v taskset -c 0 ./clang/bin/rc6_test_pth
+/usr/bin/time -v ./clang/bin/rc6_test
 /usr/bin/time -v ./clang/bin/rc6_test_pth
 
 perf stat -ddd ./py/rc6.py
 perf stat -ddd taskset -c 0 ./clang/bin/rc6_test
+perf stat -ddd taskset -c 0 ./clang/bin/rc6_test_pth
+perf stat -ddd ./clang/bin/rc6_test
 perf stat -ddd ./clang/bin/rc6_test_pth
