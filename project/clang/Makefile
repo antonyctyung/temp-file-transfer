@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-I.
+CFLAGS=-I. -lpthread
 DEPS = rc6.h
 ODIR=obj
 BDIR=bin
