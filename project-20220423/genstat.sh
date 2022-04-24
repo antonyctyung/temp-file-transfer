@@ -25,13 +25,14 @@ make
 cd ..
 
 # get spec, run perf and store them to file
-./spec.sh > spec${BMSUFFIX}.txt 2>&1
-eval "${BMPERFCMD} ${BMPYLOC}" > stat_py${BMSUFFIX}.txt 2>&1
-eval "${BMPERFCMD} ${BMTSKSCMD} ${BMPYLOC}" > stat_py_tsks${BMSUFFIX}.txt 2>&1
-eval "${BMPERFCMD} ${BMCLOC}" > stat_c${BMSUFFIX}.txt 2>&1
-eval "${BMPERFCMD} ${BMTSKSCMD} ${BMCLOC}" > stat_c_tsks${BMSUFFIX}.txt 2>&1
-eval "${BMPERFCMD} ${BMPTHLOC}" > stat_pth${BMSUFFIX}.txt 2>&1
-eval "${BMPERFCMD} ${BMTSKSCMD} ${BMPTHLOC}" > stat_pth_tsks${BMSUFFIX}.txt 2>&1
+mkdir stat${BMSUFFIX}
+./spec.sh > ./stat${BMSUFFIX}/spec${BMSUFFIX}.txt 2>&1
+eval "${BMPERFCMD} ${BMPYLOC}" > ./stat${BMSUFFIX}/stat_py${BMSUFFIX}.txt 2>&1
+eval "${BMPERFCMD} ${BMTSKSCMD} ${BMPYLOC}" > ./stat${BMSUFFIX}/stat_py_tsks${BMSUFFIX}.txt 2>&1
+eval "${BMPERFCMD} ${BMCLOC}" > ./stat${BMSUFFIX}/stat_c${BMSUFFIX}.txt 2>&1
+eval "${BMPERFCMD} ${BMTSKSCMD} ${BMCLOC}" > ./stat${BMSUFFIX}/stat_c_tsks${BMSUFFIX}.txt 2>&1
+eval "${BMPERFCMD} ${BMPTHLOC}" > ./stat${BMSUFFIX}/stat_pth${BMSUFFIX}.txt 2>&1
+eval "${BMPERFCMD} ${BMTSKSCMD} ${BMPTHLOC}" > ./stat${BMSUFFIX}/stat_pth_tsks${BMSUFFIX}.txt 2>&1
 
 # cleanup
 cd clang
