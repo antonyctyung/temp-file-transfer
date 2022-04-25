@@ -1,13 +1,13 @@
-++ perf stat -e task-clock:u,context-switches:u,cpu-migrations:u,page-faults:u,cycles:u,instructions:u taskset -c 0 ./py/rc6.py
+++ perf stat -e task-clock:u,context-switches:u,cpu-migrations:u,page-faults:u,cycles:u,instructions:u taskset -c 0 ./clang/bin/rc6_c_pth
 
- Performance counter stats for 'taskset -c 0 ./py/rc6.py':
+ Performance counter stats for 'taskset -c 0 ./clang/bin/rc6_c_pth':
 
-        319.961353      task-clock:u (msec)       #    0.999 CPUs utilized          
+         36.391688      task-clock:u (msec)       #    0.792 CPUs utilized          
                  0      context-switches:u        #    0.000 K/sec                  
                  0      cpu-migrations:u          #    0.000 K/sec                  
-               927      page-faults:u             #    0.003 M/sec                  
-     1,106,999,860      cycles:u                  #    3.460 GHz                    
-     2,878,721,637      instructions:u            #    2.60  insn per cycle         
+             2,019      page-faults:u             #    0.055 M/sec                  
+        38,361,464      cycles:u                  #    1.054 GHz                    
+        53,261,919      instructions:u            #    1.39  insn per cycle         
 
-       0.320239493 seconds time elapsed
+       0.045948199 seconds time elapsed
 

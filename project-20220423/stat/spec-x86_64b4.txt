@@ -1,7 +1,7 @@
 + ls -hl ./clang/bin
 total 32K
--rwxr-xr-x 1 root root 13K Apr 24 20:13 rc6_c
--rwxr-xr-x 1 root root 13K Apr 24 20:13 rc6_c_pth
+-rwxr-xr-x 1 root root 13K Apr 24 20:42 rc6_c
+-rwxr-xr-x 1 root root 13K Apr 24 20:42 rc6_c_pth
 + uname -a
 Linux atnqty-Lenovo-YOGA-710-15IKB 4.15.0-176-generic #185-Ubuntu SMP Tue Mar 29 17:40:04 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
 + cat /proc/version
@@ -21,7 +21,7 @@ CPU family:          6
 Model:               142
 Model name:          Intel(R) Core(TM) i7-7500U CPU @ 2.70GHz
 Stepping:            9
-CPU MHz:             1835.942
+CPU MHz:             3059.567
 CPU max MHz:         3500.0000
 CPU min MHz:         400.0000
 BogoMIPS:            5799.77
@@ -40,7 +40,7 @@ model		: 142
 model name	: Intel(R) Core(TM) i7-7500U CPU @ 2.70GHz
 stepping	: 9
 microcode	: 0xea
-cpu MHz		: 1835.942
+cpu MHz		: 3059.567
 cache size	: 4096 KB
 physical id	: 0
 siblings	: 4
@@ -67,7 +67,7 @@ model		: 142
 model name	: Intel(R) Core(TM) i7-7500U CPU @ 2.70GHz
 stepping	: 9
 microcode	: 0xea
-cpu MHz		: 2876.507
+cpu MHz		: 2970.010
 cache size	: 4096 KB
 physical id	: 0
 siblings	: 4
@@ -94,7 +94,7 @@ model		: 142
 model name	: Intel(R) Core(TM) i7-7500U CPU @ 2.70GHz
 stepping	: 9
 microcode	: 0xea
-cpu MHz		: 2431.964
+cpu MHz		: 3230.353
 cache size	: 4096 KB
 physical id	: 0
 siblings	: 4
@@ -121,7 +121,7 @@ model		: 142
 model name	: Intel(R) Core(TM) i7-7500U CPU @ 2.70GHz
 stepping	: 9
 microcode	: 0xea
-cpu MHz		: 2419.078
+cpu MHz		: 3255.094
 cache size	: 4096 KB
 physical id	: 0
 siblings	: 4
@@ -193,36 +193,36 @@ Total online memory:    15.9G
 Total offline memory:      0B
 + cat /proc/meminfo
 MemTotal:       16133192 kB
-MemFree:          324812 kB
-MemAvailable:    9676948 kB
-Buffers:         4083192 kB
-Cached:          6426404 kB
+MemFree:          297000 kB
+MemAvailable:    9156420 kB
+Buffers:         3808512 kB
+Cached:          6145296 kB
 SwapCached:            0 kB
-Active:          6204588 kB
-Inactive:        8914076 kB
-Active(anon):    4613864 kB
-Inactive(anon):  1138896 kB
-Active(file):    1590724 kB
-Inactive(file):  7775180 kB
+Active:          6832380 kB
+Inactive:        8308268 kB
+Active(anon):    5191864 kB
+Inactive(anon):  1072588 kB
+Active(file):    1640516 kB
+Inactive(file):  7235680 kB
 Unevictable:         104 kB
 Mlocked:             104 kB
 SwapTotal:       2097148 kB
 SwapFree:        2096892 kB
-Dirty:               296 kB
+Dirty:               488 kB
 Writeback:             0 kB
-AnonPages:       4609000 kB
-Mapped:          1051872 kB
-Shmem:           1147312 kB
-Slab:             419500 kB
-SReclaimable:     328028 kB
-SUnreclaim:        91472 kB
-KernelStack:       26104 kB
-PageTables:        97380 kB
+AnonPages:       5186696 kB
+Mapped:          1028140 kB
+Shmem:           1081232 kB
+Slab:             419436 kB
+SReclaimable:     325104 kB
+SUnreclaim:        94332 kB
+KernelStack:       27424 kB
+PageTables:       103012 kB
 NFS_Unstable:          0 kB
 Bounce:                0 kB
 WritebackTmp:          0 kB
 CommitLimit:    10163744 kB
-Committed_AS:   16099424 kB
+Committed_AS:   16841800 kB
 VmallocTotal:   34359738367 kB
 VmallocUsed:           0 kB
 VmallocChunk:          0 kB
@@ -237,10 +237,10 @@ HugePages_Free:        0
 HugePages_Rsvd:        0
 HugePages_Surp:        0
 Hugepagesize:       2048 kB
-DirectMap4k:     1010076 kB
-DirectMap2M:    15476736 kB
+DirectMap4k:     1026460 kB
+DirectMap2M:    15460352 kB
 DirectMap1G:     1048576 kB
 + free -h
               total        used        free      shared  buff/cache   available
-Mem:            15G        4.7G        317M        1.1G         10G        9.2G
+Mem:            15G        5.3G        290M        1.0G        9.8G        8.7G
 Swap:          2.0G        256K        2.0G

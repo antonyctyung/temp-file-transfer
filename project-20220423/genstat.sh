@@ -47,8 +47,8 @@ eval "${BMPERFCMD} ${BMTSKSCMD} ${BMPYLOC}" > ./stat/stat-rc6_py_tsks${BMSUFFIX}
 
 for f in ${BMCBINLOC}
 do
-    eval "${BMPERFCMD} ${BMPYLOC}" > ./stat/stat-${f##*/}${BMSUFFIX}.txt 2>&1
-    eval "${BMPERFCMD} ${BMTSKSCMD} ${BMPYLOC}" > ./stat/stat-${f##*/}_tsks${BMSUFFIX}.txt 2>&1
+    eval "${BMPERFCMD} ${f}" > ./stat/stat-${f##*/}${BMSUFFIX}.txt 2>&1
+    eval "${BMPERFCMD} ${BMTSKSCMD} ${f}" > ./stat/stat-${f##*/}_tsks${BMSUFFIX}.txt 2>&1
 done
 
 # eval "${BMPERFCMD} ${BMCLOC}" > ./stat/stat${BMSUFFIX}/stat_c${BMSUFFIX}.txt 2>&1
