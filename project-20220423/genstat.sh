@@ -15,6 +15,14 @@ BMTSKSCMD="taskset -c 0"
 BMPYLOC="./py/rc6.py"
 BMCLOC="./clang/bin/rc6_test"
 BMPTHLOC="./clang/bin/rc6_test_pth"
+BML2TESTLOC="/sys/devices/system/cpu/cpu0/cache/index2/level"
+
+# test if l2 cache exists
+if [ -f "${BML2TESTLOC}" ]; then
+    if [ "${BMARCH}" == "riscv64" ]; then
+        BMSUFFIX+="_l2"
+    fi
+fi
 
 # make binaries
 cd clang
