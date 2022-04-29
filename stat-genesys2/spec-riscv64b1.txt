@@ -1,0 +1,68 @@
++ ls -hl ./clang/bin
+total 32K
+-rwxr-xr-x 1 root root 13K Apr 25 04:35 rc6_c
+-rwxr-xr-x 1 root root 13K Apr 25 04:35 rc6_c_pth
++ uname -a
+Linux debian 5.12.7-dirty #1 SMP Tue Jun 1 11:28:12 PDT 2021 riscv64 GNU/Linux
++ cat /proc/version
+Linux version 5.12.7-dirty (eugene@gate) (riscv64-linux-gnu-gcc (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0, GNU ld (GNU Binutils for Ubuntu) 2.34) #1 SMP Tue Jun 1 11:28:12 PDT 2021
++ lscpu
+Architecture:        riscv64
+Byte Order:          Little Endian
+CPU(s):              1
+On-line CPU(s) list: 0
++ cat /proc/cpuinfo
+processor	: 0
+hart		: 0
+isa		: rv64imafdc
+mmu		: sv39
+uarch		: sifive,rocket0
+
++ lsblk
+NAME        MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+mmcblk0     179:0    0  7.4G  0 disk 
+├─mmcblk0p1 179:1    0  400M  0 part /boot
+└─mmcblk0p2 179:2    0    7G  0 part /
++ lsmem
+lsmem: cannot open /sys/devices/system/memory: No such file or directory
++ cat /proc/meminfo
+MemTotal:        1000816 kB
+MemFree:          894456 kB
+MemAvailable:     960744 kB
+Buffers:            7732 kB
+Cached:            67784 kB
+SwapCached:            0 kB
+Active:            44352 kB
+Inactive:          43460 kB
+Active(anon):        128 kB
+Inactive(anon):    13400 kB
+Active(file):      44224 kB
+Inactive(file):    30060 kB
+Unevictable:           0 kB
+Mlocked:               0 kB
+SwapTotal:        262140 kB
+SwapFree:         262140 kB
+Dirty:              2652 kB
+Writeback:             0 kB
+AnonPages:         12336 kB
+Mapped:            21520 kB
+Shmem:              1228 kB
+KReclaimable:       5932 kB
+Slab:              13304 kB
+SReclaimable:       5932 kB
+SUnreclaim:         7372 kB
+KernelStack:        1008 kB
+PageTables:          704 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:      762548 kB
+Committed_AS:     118684 kB
+VmallocTotal:   67108863 kB
+VmallocUsed:         136 kB
+VmallocChunk:          0 kB
+Percpu:               84 kB
++ free -h
+               total        used        free      shared  buff/cache   available
+Mem:           977Mi        24Mi       873Mi       1.0Mi        79Mi       938Mi
+Swap:          255Mi          0B       255Mi
