@@ -1,9 +1,10 @@
 #include <stdint.h>
 #include "rc6.h"
 
+#define ROUND 1000
+
 int main()
 {
-    const int ROUND = 1000;
     uint8_t plaintext[16] = {   0x02, 0x13, 0x24, 0x35, 0x46, 0x57, 0x68, 0x79, 
                                 0x8a, 0x9b, 0xac, 0xbd, 0xce, 0xdf, 0xe0, 0xf1  };
     uint8_t cyphertext[16] = {  0xc8, 0x24, 0x18, 0x16, 0xf0, 0xd7, 0xe4, 0x89,
@@ -19,5 +20,5 @@ int main()
         RC6_32_20_32_encrypt(plaintext,32,key); //c824 ... 5d48
         RC6_32_20_32_decrypt(cyphertext,32,key); //0213 ... e0f1
     }
-    return 1;
+    return 0;
 }

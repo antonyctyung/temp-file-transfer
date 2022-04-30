@@ -1,7 +1,7 @@
 #include <stdint.h>
 #include "rc6.h"
 #include "pthread.h" 
-#include <stdio.h>
+// #include <stdio.h>
 #include <stdlib.h>
 
 #define ROUND 1000
@@ -41,14 +41,14 @@ int main()
     {
         for (int j = 0; j < THRDCNT; j++)
         {
-            pthread_create(&(pthrd[i]), NULL, uut, &args);
+            pthread_create(&(pthrd[j]), NULL, uut, &args);
         }
         for (int j = 0; j < THRDCNT; j++)
         {
-            pthread_join(pthrd[i], NULL);
+            pthread_join(pthrd[j], NULL);
         }
         // printf("%3d/125\n", i+1);
     }
     // for (int i = 0; i < ROUND; i++) uut();
-    return 1;
+    return 0;
 }

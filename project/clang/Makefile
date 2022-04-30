@@ -6,17 +6,23 @@ BDIR=bin
 _OBJ = rc6.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
-all: rc6_test rc6_test_pth
+all: rc6_c rc6_c_pth
+all_max: rc6_c_max rc6_c_pth_max
 
 $(ODIR)/%.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-rc6_test: rc6_test.c $(OBJ)
+rc6_c: rc6_c.c $(OBJ)
 	$(CC) -o $(BDIR)/$@ $^ $(CFLAGS)
 
-rc6_test_pth: rc6_test_pth.c $(OBJ)
+rc6_c_pth: rc6_c_pth.c $(OBJ)
 	$(CC) -o $(BDIR)/$@ $^ $(CFLAGS) -lpthread
 
+rc6_c_max: rc6_c.c $(OBJ)
+	$(CC) -o $(BDIR)/$@ $^ $(CFLAGS) -DROUND=2000000000
+
+rc6_c_pth_max: rc6_c_pth.c $(OBJ)
+	$(CC) -o $(BDIR)/$@ $^ $(CFLAGS) -lpthread -DROUND=2000000000
 
 .PHONY: clean
 
