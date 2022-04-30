@@ -5,7 +5,11 @@
 #include "pthread.h" 
 
 #ifndef MAIN_ROUNDS
+#ifdef MAKE_PHOTONBEETLE_128
+#define MAIN_ROUNDS 100
+#else
 #define MAIN_ROUNDS 1000
+#endif
 #endif
 
 // default kat 137
@@ -58,7 +62,13 @@ void *uut(void *argstruct)
 	printf("\n");
 #endif
 
+
+	unsigned char *m_out = malloc(MAIN_MBYTES+CRYPTO_ABYTES);
+	unsigned long long *mlen_out = malloc(sizeof(unsigned long long));
+	unsigned char *nsec_out = malloc(CRYPTO_NSECBYTES);
+
     crypto_aead_encrypt(CRYPTO_AEAD_TYPE, c, clen, args->m, mlen, args->ad, adlen, args->nsec, args->npub, args->k);
+	crypto_aead_decrypt(CRYPTO_AEAD_TYPE, m_out, mlen_out, nsec_out, c, *(unsigned long long *)clen, args->ad, adlen, args->npub, args->k);
 
 #ifdef DEBUG
     printf("clen: %lld\n", *clen);
@@ -67,12 +77,6 @@ void *uut(void *argstruct)
     for (int i = 0; i < *clen; i++) printf("%02x", c[i]);
     printf("\n");
 #endif
-
-	unsigned char *m_out = malloc(MAIN_MBYTES+CRYPTO_ABYTES);
-	unsigned long long *mlen_out = malloc(sizeof(unsigned long long));
-	unsigned char *nsec_out = malloc(CRYPTO_NSECBYTES);
-
-	crypto_aead_decrypt(CRYPTO_AEAD_TYPE, m_out, mlen_out, nsec_out, c, *(unsigned long long *)clen, args->ad, adlen, args->npub, args->k);
 
 #ifdef DEBUG
     printf("mlen_out: %lld\n", *mlen_out);
@@ -118,7 +122,12 @@ int main(){
 
     struct argstr args = {m, ad, nsec, npub, k};
 
+#ifdef MAIN_LOOP
+    int i;
+    while (1)
+#else
     for (int i = 0; i < MAIN_ROUNDS/THRDCNT; i++)
+#endif
     {
         for (int j = 0; j < THRDCNT; j++)
         {
@@ -128,10 +137,11 @@ int main(){
         {
             pthread_join(pthrd[j], NULL);
         }
+#ifdef MAIN_LOOP
+        i++;
+#endif
         // printf("%3d/125\n", i+1);
     }
-
-    printf("END\n");
 
     free(m_in);
     free(ad_in);

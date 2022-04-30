@@ -1,5 +1,6 @@
 #include <stdint.h>
 #include "rc6.h"
+#include <stdio.h>
 
 #define ROUND 1000
 
@@ -13,8 +14,12 @@ int main()
                         0x01, 0x12, 0x23, 0x34, 0x45, 0x56, 0x67, 0x78,
                         0x89, 0x9a, 0xab, 0xbc, 0xcd, 0xde, 0xef, 0xf0, 
                         0x10, 0x32, 0x54, 0x76, 0x98, 0xba, 0xdc, 0xfe  };
-    
+
+#ifdef MAIN_LOOP
+    while (1)
+#else
     for (int i = 0; i < ROUND; i++)
+#endif
     {
         uint32_t* S = key_expansion(32,key);
         RC6_32_20_32_encrypt(plaintext,32,key); //c824 ... 5d48

@@ -1,6 +1,6 @@
 #include <stdint.h>
 #include <stdlib.h>
-// #include <stdio.h>
+#include <stdio.h>
 #include "rc6.h"
 
 uint32_t rotl(uint32_t x, uint32_t amt)
@@ -62,6 +62,15 @@ void RC6_32_20_32_encrypt(uint8_t* msg_p, size_t b, uint8_t* key)
     A = A + S[2*r+2];
     C = C + S[2*r+3];
     free(S);
+    // printf("Encrypting: ");
+    // for (int i = 0; i < b/2; i++) printf("%02x", msg_p[i]);
+    // printf("\n");
+    // printf("--> ");
+    // for (int i = 0; i < 4; i++)  printf("%02x",((uint8_t)(A>>8*i)));
+    // for (int i = 0; i < 4; i++)  printf("%02x",((uint8_t)(B>>8*i)));
+    // for (int i = 0; i < 4; i++)  printf("%02x",((uint8_t)(C>>8*i)));
+    // for (int i = 0; i < 4; i++)  printf("%02x",((uint8_t)(D>>8*i)));
+    // printf("\r\n");
     // printf("Encrypting: ");
     // for (int i = 0; i < b/2; i++) printf("%02x", msg_p[i]);
     // printf("\n");

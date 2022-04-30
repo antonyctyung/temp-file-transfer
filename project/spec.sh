@@ -4,6 +4,7 @@ set -x
 ls -hl ./clang/bin
 ls -hl ./lwc_c/bin
 ls -hl ./py/rc6.py
+ls -hl ./py/rc6_loop.py
 
 uname -a
 

@@ -4,7 +4,11 @@
 #include "api.h"
 
 #ifndef MAIN_ROUNDS
+#ifdef MAKE_PHOTONBEETLE_128
+#define MAIN_ROUNDS 100
+#else
 #define MAIN_ROUNDS 1000
+#endif
 #endif
 
 // default kat 137
@@ -64,8 +68,19 @@ int main(){
 	printf("\n");
 #endif
 
+	unsigned char *m_out = malloc(MAIN_MBYTES+CRYPTO_ABYTES);
+	unsigned long long *mlen_out = malloc(sizeof(unsigned long long));
+	unsigned char *nsec_out = malloc(CRYPTO_NSECBYTES);
+
+#ifdef MAIN_LOOP
+    while (1)
+#else
     for (int i = 0; i < MAIN_ROUNDS; i++)
+#endif
+    {
         crypto_aead_encrypt(CRYPTO_AEAD_TYPE, c, clen, m, mlen, ad, adlen, nsec, npub, k);
+        crypto_aead_decrypt(CRYPTO_AEAD_TYPE, m_out, mlen_out, nsec_out, c, *(unsigned long long *)clen, ad, adlen, npub, k);
+    }
 
 #ifdef DEBUG
     printf("clen: %lld\n", *clen);
@@ -74,12 +89,6 @@ int main(){
     for (int i = 0; i < *clen; i++) printf("%02x", c[i]);
     printf("\n");
 #endif
-
-	unsigned char *m_out = malloc(MAIN_MBYTES+CRYPTO_ABYTES);
-	unsigned long long *mlen_out = malloc(sizeof(unsigned long long));
-	unsigned char *nsec_out = malloc(CRYPTO_NSECBYTES);
-    for (int i = 0; i < MAIN_ROUNDS; i++)
-	    crypto_aead_decrypt(CRYPTO_AEAD_TYPE, m_out, mlen_out, nsec_out, c, *(unsigned long long *)clen, ad, adlen, npub, k);
 
 #ifdef DEBUG
     printf("mlen_out: %lld\n", *mlen_out);

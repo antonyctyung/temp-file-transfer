@@ -10,7 +10,7 @@ XOBJ = xoodyak/obj/Xoodoo-reference.o xoodyak/obj/Xoodyak.o xoodyak/obj/xoodyak_
 
 all: xoodyak_c photonbeetle_c xoodyak_c_pth photonbeetle_c_pth
 
-all_max: xoodyak_c_max photonbeetle_c_max xoodyak_c_pth_max photonbeetle_c_pth_max
+all_loop: xoodyak_c_loop photonbeetle_c_loop xoodyak_c_pth_loop photonbeetle_c_pth_loop
 
 xoodyak/obj/%.o:
 	cd xoodyak && \
@@ -25,34 +25,31 @@ photonbeetle_128/%.o:
 	cd ..
 
 $(ODIR)/%.o: %.c $(DEPS)
-	mkdir $(ODIR); $(CC) $(CFLAGS) -c -o $@ $<
-
-# $(ODIR)/%.o: %.c $(DEPS)
-# 	mkdir $(ODIR); $(CC) $(CFLAGS) -c -o $@ $< 
+	mkdir $(ODIR) ; $(CC) $(CFLAGS) -c -o $@ $<
 
 xoodyak_c: $(OBJ) $(XOBJ)
-	mkdir $(BDIR); $(CC) $(CFLAGS) -DMAKE_XOODYAK -o $(BDIR)/$@ lwc_c.c $^
+	mkdir $(BDIR) ; $(CC) $(CFLAGS) -DMAKE_XOODYAK -o $(BDIR)/$@ lwc_c.c $^
 
 photonbeetle_c: $(OBJ) $(XOBJ)
-	mkdir $(BDIR); $(CC) $(CFLAGS) -DMAKE_PHOTONBEETLE_128 -o $(BDIR)/$@ lwc_c.c $^
+	mkdir $(BDIR) ; $(CC) $(CFLAGS) -DMAKE_PHOTONBEETLE_128 -o $(BDIR)/$@ lwc_c.c $^
 
 xoodyak_c_pth: $(OBJ) $(XOBJ)
-	mkdir $(BDIR); $(CC) $(CFLAGS) -DMAKE_XOODYAK -o $(BDIR)/$@ lwc_c_pth.c $^ -lpthread
+	mkdir $(BDIR) ; $(CC) $(CFLAGS) -DMAKE_XOODYAK -o $(BDIR)/$@ lwc_c_pth.c $^ -lpthread
 
 photonbeetle_c_pth: $(OBJ) $(XOBJ)
-	mkdir $(BDIR); $(CC) $(CFLAGS) -DMAKE_PHOTONBEETLE_128 -o $(BDIR)/$@ lwc_c_pth.c $^ -lpthread
+	mkdir $(BDIR) ; $(CC) $(CFLAGS) -DMAKE_PHOTONBEETLE_128 -o $(BDIR)/$@ lwc_c_pth.c $^ -lpthread
 
-xoodyak_c_max: $(OBJ) $(XOBJ)
-	mkdir $(BDIR); $(CC) $(CFLAGS) -DMAKE_XOODYAK -DMAIN_ROUNDS=2000000000 -o $(BDIR)/$@ lwc_c.c $^
+xoodyak_c_loop: $(OBJ) $(XOBJ)
+	mkdir $(BDIR) ; $(CC) $(CFLAGS) -DMAKE_XOODYAK -DMAIN_LOOP -o $(BDIR)/$@ lwc_c.c $^
 
-photonbeetle_c_max: $(OBJ) $(XOBJ)
-	mkdir $(BDIR); $(CC) $(CFLAGS) -DMAKE_PHOTONBEETLE_128 -DMAIN_ROUNDS=2000000000 -o $(BDIR)/$@ lwc_c.c $^
+photonbeetle_c_loop: $(OBJ) $(XOBJ)
+	mkdir $(BDIR) ; $(CC) $(CFLAGS) -DMAKE_PHOTONBEETLE_128 -DMAIN_LOOP -o $(BDIR)/$@ lwc_c.c $^
 
-xoodyak_c_pth_max: $(OBJ) $(XOBJ)
-	mkdir $(BDIR); $(CC) $(CFLAGS) -DMAKE_XOODYAK -DMAIN_ROUNDS=2000000000 -o $(BDIR)/$@ lwc_c_pth.c $^ -lpthread
+xoodyak_c_pth_loop: $(OBJ) $(XOBJ)
+	mkdir $(BDIR) ; $(CC) $(CFLAGS) -DMAKE_XOODYAK -DMAIN_LOOP -o $(BDIR)/$@ lwc_c_pth.c $^ -lpthread
 
-photonbeetle_c_pth_max: $(OBJ) $(XOBJ)
-	mkdir $(BDIR); $(CC) $(CFLAGS) -DMAKE_PHOTONBEETLE_128 -DMAIN_ROUNDS=2000000000 -o $(BDIR)/$@ lwc_c_pth.c $^ -lpthread
+photonbeetle_c_pth_loop: $(OBJ) $(XOBJ)
+	mkdir $(BDIR) ; $(CC) $(CFLAGS) -DMAKE_PHOTONBEETLE_128 -DMAIN_LOOP -o $(BDIR)/$@ lwc_c_pth.c $^ -lpthread
 
 .PHONY: clean
 

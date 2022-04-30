@@ -36,8 +36,12 @@ int main()
                         0x10, 0x32, 0x54, 0x76, 0x98, 0xba, 0xdc, 0xfe  };
     struct argstr args = {plaintext, cyphertext, key};
 
-    
-    for (int i = 0; i < ROUND/THRDCNT; i++)
+#ifdef MAIN_LOOP
+    int i = 0;
+    while (1)
+#else
+    for (int i = 0; i < ROUND; i++)
+#endif
     {
         for (int j = 0; j < THRDCNT; j++)
         {
@@ -48,6 +52,9 @@ int main()
             pthread_join(pthrd[j], NULL);
         }
         // printf("%3d/125\n", i+1);
+#ifdef MAIN_LOOP
+        i++;
+#endif
     }
     // for (int i = 0; i < ROUND; i++) uut();
     return 0;

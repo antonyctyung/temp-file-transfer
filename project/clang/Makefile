@@ -7,22 +7,22 @@ _OBJ = rc6.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 all: rc6_c rc6_c_pth
-all_max: rc6_c_max rc6_c_pth_max
+all_loop: rc6_c_loop rc6_c_pth_loop
 
 $(ODIR)/%.o: %.c $(DEPS)
-	$(CC) -c -o $@ $< $(CFLAGS)
+	mkdir $(ODIR) ; $(CC) -c -o $@ $< $(CFLAGS)
 
 rc6_c: rc6_c.c $(OBJ)
-	$(CC) -o $(BDIR)/$@ $^ $(CFLAGS)
+	mkdir $(BDIR) ; $(CC) -o $(BDIR)/$@ $^ $(CFLAGS)
 
 rc6_c_pth: rc6_c_pth.c $(OBJ)
-	$(CC) -o $(BDIR)/$@ $^ $(CFLAGS) -lpthread
+	mkdir $(BDIR) ; $(CC) -o $(BDIR)/$@ $^ $(CFLAGS) -lpthread
 
-rc6_c_max: rc6_c.c $(OBJ)
-	$(CC) -o $(BDIR)/$@ $^ $(CFLAGS) -DROUND=2000000000
+rc6_c_loop: rc6_c.c $(OBJ)
+	mkdir $(BDIR) ; $(CC) -o $(BDIR)/$@ $^ $(CFLAGS) -DMAIN_LOOP
 
-rc6_c_pth_max: rc6_c_pth.c $(OBJ)
-	$(CC) -o $(BDIR)/$@ $^ $(CFLAGS) -lpthread -DROUND=2000000000
+rc6_c_pth_loop: rc6_c_pth.c $(OBJ)
+	mkdir $(BDIR) ; $(CC) -o $(BDIR)/$@ $^ $(CFLAGS) -lpthread -DMAIN_LOOP
 
 .PHONY: clean
 
