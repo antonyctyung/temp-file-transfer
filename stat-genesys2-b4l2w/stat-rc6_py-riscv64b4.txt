@@ -1,0 +1,17 @@
+++ perf stat -e task-clock:u,context-switches:u,cpu-migrations:u,page-faults:u,cycles:u,instructions:u ./py/rc6.py
+
+ Performance counter stats for './py/rc6.py':
+
+        157,214.16 msec task-clock:u              #    0.995 CPUs utilized          
+               260      context-switches:u        #    1.654 /sec                   
+                 9      cpu-migrations:u          #    0.057 /sec                   
+               965      page-faults:u             #    6.138 /sec                   
+    12,577,110,794      cycles:u                  #    0.080 GHz                    
+     3,767,018,537      instructions:u            #    0.30  insn per cycle         
+
+     158.062848352 seconds time elapsed
+
+     156.403879000 seconds user
+       0.819663000 seconds sys
+
+

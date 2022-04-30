@@ -1,0 +1,17 @@
+++ perf stat -e task-clock:u,context-switches:u,cpu-migrations:u,page-faults:u,cycles:u,instructions:u ./clang/bin/rc6_c
+
+ Performance counter stats for './clang/bin/rc6_c':
+
+          2,519.47 msec task-clock:u              #    0.992 CPUs utilized          
+                 6      context-switches:u        #    2.381 /sec                   
+                 1      cpu-migrations:u          #    0.397 /sec                   
+               133      page-faults:u             #   52.789 /sec                   
+       157,464,767      cycles:u                  #    0.062 GHz                    
+        76,935,521      instructions:u            #    0.49  insn per cycle         
+
+       2.539843551 seconds time elapsed
+
+       2.486957000 seconds user
+       0.055976000 seconds sys
+
+

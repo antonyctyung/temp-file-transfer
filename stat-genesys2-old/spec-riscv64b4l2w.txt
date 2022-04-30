@@ -1,0 +1,86 @@
++ ls -hl ./clang/bin
+total 32K
+-rwxr-xr-x 1 root root 13K Apr 25 03:49 rc6_c
+-rwxr-xr-x 1 root root 13K Apr 25 03:49 rc6_c_pth
++ uname -a
+Linux debian 5.12.7-dirty #1 SMP Tue Jun 1 11:28:12 PDT 2021 riscv64 GNU/Linux
++ cat /proc/version
+Linux version 5.12.7-dirty (eugene@gate) (riscv64-linux-gnu-gcc (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0, GNU ld (GNU Binutils for Ubuntu) 2.34) #1 SMP Tue Jun 1 11:28:12 PDT 2021
++ lscpu
+Architecture:        riscv64
+Byte Order:          Little Endian
+CPU(s):              4
+On-line CPU(s) list: 0-3
++ cat /proc/cpuinfo
+processor	: 0
+hart		: 0
+isa		: rv64imafdc
+mmu		: sv39
+uarch		: sifive,rocket0
+
+processor	: 1
+hart		: 1
+isa		: rv64imafdc
+mmu		: sv39
+uarch		: sifive,rocket0
+
+processor	: 2
+hart		: 2
+isa		: rv64imafdc
+mmu		: sv39
+uarch		: sifive,rocket0
+
+processor	: 3
+hart		: 3
+isa		: rv64imafdc
+mmu		: sv39
+uarch		: sifive,rocket0
+
++ lsblk
+NAME        MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+mmcblk0     179:0    0  7.4G  0 disk 
+├─mmcblk0p1 179:1    0  400M  0 part /boot
+└─mmcblk0p2 179:2    0    7G  0 part /
++ lsmem
+lsmem: cannot open /sys/devices/system/memory: No such file or directory
++ cat /proc/meminfo
+MemTotal:        1000588 kB
+MemFree:          845468 kB
+MemAvailable:     952016 kB
+Buffers:           13432 kB
+Cached:           101192 kB
+SwapCached:            0 kB
+Active:            68652 kB
+Inactive:          58396 kB
+Active(anon):        116 kB
+Inactive(anon):    13536 kB
+Active(file):      68536 kB
+Inactive(file):    44860 kB
+Unevictable:           0 kB
+Mlocked:               0 kB
+SwapTotal:        262140 kB
+SwapFree:         262140 kB
+Dirty:               144 kB
+Writeback:             0 kB
+AnonPages:         12464 kB
+Mapped:            21440 kB
+Shmem:              1232 kB
+KReclaimable:       8232 kB
+Slab:              18472 kB
+SReclaimable:       8232 kB
+SUnreclaim:        10240 kB
+KernelStack:        1392 kB
+PageTables:          784 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:      762432 kB
+Committed_AS:     126940 kB
+VmallocTotal:   67108863 kB
+VmallocUsed:         136 kB
+VmallocChunk:          0 kB
+Percpu:              336 kB
++ free -h
+               total        used        free      shared  buff/cache   available
+Mem:           977Mi        31Mi       825Mi       1.0Mi       119Mi       929Mi
+Swap:          255Mi          0B       255Mi

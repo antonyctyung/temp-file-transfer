@@ -1,0 +1,17 @@
+++ perf stat -e task-clock:u,context-switches:u,cpu-migrations:u,page-faults:u,cycles:u,instructions:u taskset -c 0 ./lwc_c/bin/xoodyak_c
+
+ Performance counter stats for 'taskset -c 0 ./lwc_c/bin/xoodyak_c':
+
+          8,466.14 msec task-clock:u              #    0.993 CPUs utilized          
+                35      context-switches:u        #    4.134 /sec                   
+                 1      cpu-migrations:u          #    0.118 /sec                   
+                90      page-faults:u             #   10.631 /sec                   
+       529,136,146      cycles:u                  #    0.063 GHz                    
+       271,388,148      instructions:u            #    0.51  insn per cycle         
+
+       8.523215867 seconds time elapsed
+
+       8.392154000 seconds user
+       0.100001000 seconds sys
+
+

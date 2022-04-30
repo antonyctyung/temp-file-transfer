@@ -1,0 +1,17 @@
+++ perf stat -e task-clock:u,context-switches:u,cpu-migrations:u,page-faults:u,cycles:u,instructions:u taskset -c 0 ./py/rc6.py
+
+ Performance counter stats for 'taskset -c 0 ./py/rc6.py':
+
+        122,192.98 msec task-clock:u              #    0.998 CPUs utilized          
+               536      context-switches:u        #    4.387 /sec                   
+                 1      cpu-migrations:u          #    0.008 /sec                   
+               994      page-faults:u             #    8.135 /sec                   
+    12,219,096,310      cycles:u                  #    0.100 GHz                    
+     3,710,269,878      instructions:u            #    0.30  insn per cycle         
+
+     122.462892223 seconds time elapsed
+
+     121.857308000 seconds user
+       0.331416000 seconds sys
+
+

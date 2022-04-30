@@ -1,0 +1,80 @@
++ ls -hl ./clang/bin
+total 32K
+-rwxr-xr-x 1 root root 13K Apr 30 04:35 rc6_c
+-rwxr-xr-x 1 root root 13K Apr 30 04:35 rc6_c_pth
++ ls -hl ./lwc_c/bin
+total 176K
+-rwxr-xr-x 1 root root 41K Apr 30 04:36 photonbeetle_c
+-rwxr-xr-x 1 root root 42K Apr 30 04:36 photonbeetle_c_pth
+-rwxr-xr-x 1 root root 41K Apr 30 04:35 xoodyak_c
+-rwxr-xr-x 1 root root 42K Apr 30 04:36 xoodyak_c_pth
++ ls -hl ./py/rc6.py
+-rwxr-xr-x 1 debian debian 2.3K Apr 30 04:31 ./py/rc6.py
++ ls -hl ./py/rc6_loop.py
+-rwxr-xr-x 1 debian debian 2.3K Apr 30 04:31 ./py/rc6_loop.py
++ uname -a
+Linux debian 5.12.7-dirty #1 SMP Tue Jun 1 11:28:12 PDT 2021 riscv64 GNU/Linux
++ lsb_release -a
+./spec.sh: line 11: lsb_release: command not found
++ cat /proc/version
+Linux version 5.12.7-dirty (eugene@gate) (riscv64-linux-gnu-gcc (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0, GNU ld (GNU Binutils for Ubuntu) 2.34) #1 SMP Tue Jun 1 11:28:12 PDT 2021
++ lscpu
+Architecture:        riscv64
+Byte Order:          Little Endian
+CPU(s):              1
+On-line CPU(s) list: 0
++ cat /proc/cpuinfo
+processor	: 0
+hart		: 0
+isa		: rv64imafdc
+mmu		: sv39
+uarch		: sifive,rocket0
+
++ lsmem
+lsmem: cannot open /sys/devices/system/memory: No such file or directory
++ cat /proc/meminfo
+MemTotal:        1000816 kB
+MemFree:          815088 kB
+MemAvailable:     959520 kB
+Buffers:            9904 kB
+Cached:           142748 kB
+SwapCached:            0 kB
+Active:            71104 kB
+Inactive:          93956 kB
+Active(anon):        128 kB
+Inactive(anon):    13504 kB
+Active(file):      70976 kB
+Inactive(file):    80452 kB
+Unevictable:           0 kB
+Mlocked:               0 kB
+SwapTotal:        262140 kB
+SwapFree:         262140 kB
+Dirty:               244 kB
+Writeback:             0 kB
+AnonPages:         12444 kB
+Mapped:            21548 kB
+Shmem:              1228 kB
+KReclaimable:       7936 kB
+Slab:              15256 kB
+SReclaimable:       7936 kB
+SUnreclaim:         7320 kB
+KernelStack:        1008 kB
+PageTables:          712 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:      762548 kB
+Committed_AS:     126704 kB
+VmallocTotal:   67108863 kB
+VmallocUsed:         136 kB
+VmallocChunk:          0 kB
+Percpu:               84 kB
++ lsblk
+NAME        MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+mmcblk0     179:0    0  7.4G  0 disk 
+├─mmcblk0p1 179:1    0  400M  0 part /boot
+└─mmcblk0p2 179:2    0    7G  0 part /
++ free -h
+               total        used        free      shared  buff/cache   available
+Mem:           977Mi        24Mi       795Mi       1.0Mi       156Mi       937Mi
+Swap:          255Mi          0B       255Mi

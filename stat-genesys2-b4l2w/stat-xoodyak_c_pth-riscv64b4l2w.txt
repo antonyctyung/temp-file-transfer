@@ -1,0 +1,17 @@
+++ perf stat -e task-clock:u,context-switches:u,cpu-migrations:u,page-faults:u,cycles:u,instructions:u ./lwc_c/bin/xoodyak_c_pth
+
+ Performance counter stats for './lwc_c/bin/xoodyak_c_pth':
+
+         13,265.22 msec task-clock:u              #    2.763 CPUs utilized          
+             1,214      context-switches:u        #   91.518 /sec                   
+               483      cpu-migrations:u          #   36.411 /sec                   
+             1,065      page-faults:u             #   80.285 /sec                   
+       821,154,388      cycles:u                  #    0.062 GHz                    
+       352,287,892      instructions:u            #    0.43  insn per cycle         
+
+       4.801296340 seconds time elapsed
+
+       8.378423000 seconds user
+       3.658281000 seconds sys
+
+

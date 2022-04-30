@@ -1,0 +1,17 @@
+++ perf stat -e task-clock:u,context-switches:u,cpu-migrations:u,page-faults:u,cycles:u,instructions:u ./lwc_c/bin/photonbeetle_c_pth
+
+ Performance counter stats for './lwc_c/bin/photonbeetle_c_pth':
+
+         27,032.39 msec task-clock:u              #    1.974 CPUs utilized          
+             6,538      context-switches:u        #  241.858 /sec                   
+                58      cpu-migrations:u          #    2.146 /sec                   
+               164      page-faults:u             #    6.067 /sec                   
+     2,702,212,874      cycles:u                  #    0.100 GHz                    
+     1,422,932,533      instructions:u            #    0.53  insn per cycle         
+
+      13.693193500 seconds time elapsed
+
+      26.471162000 seconds user
+       0.460299000 seconds sys
+
+

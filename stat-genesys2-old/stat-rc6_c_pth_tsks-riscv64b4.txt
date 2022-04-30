@@ -1,0 +1,17 @@
+++ perf stat -e task-clock:u,context-switches:u,cpu-migrations:u,page-faults:u,cycles:u,instructions:u taskset -c 0 ./clang/bin/rc6_c_pth
+
+ Performance counter stats for 'taskset -c 0 ./clang/bin/rc6_c_pth':
+
+          6,684.81 msec task-clock:u              #    0.880 CPUs utilized          
+               561      context-switches:u        #   83.922 /sec                   
+                 1      cpu-migrations:u          #    0.150 /sec                   
+             2,004      page-faults:u             #  299.784 /sec                   
+       522,035,821      cycles:u                  #    0.078 GHz                    
+       145,247,429      instructions:u            #    0.28  insn per cycle         
+
+       7.594771286 seconds time elapsed
+
+       1.674879000 seconds user
+       4.080956000 seconds sys
+
+
