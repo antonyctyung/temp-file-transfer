@@ -1,0 +1,10 @@
+project/lwc_c/xoodyak
+project/lwc_c/photonbeetle_128
+*/bin/
+*/obj/
+*/bin/*
+*/obj/*
+*/gmon.out
+*/*.pyc
+gmon.out
+!.gitignore
