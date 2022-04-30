@@ -37,7 +37,7 @@ BMTSKSCMD="taskset -c 0"
 BMTMOTCMD="timeout --foreground 60s"
 BMEPCHCMD="date +%s"
 BMPYLOC="./py/rc6.py"
-BMPYLOOPLOC="./py/rc6.py"
+BMPYLOOPLOC="./py/rc6_loop.py"
 BMCBINLOC="./clang/bin/*"
 BMLWCCBINLOC="./lwc_c/bin/*"
 # BMCLOC="./clang/bin/rc6_test"
@@ -91,34 +91,27 @@ f_watt () {
     cd lwc_c ; make clean ; make all_loop ; cd ..
     eval "${BMEPCHCMD}" > ./stat/watt-idle-${BMSUFFIX}.txt
     sleep 60s
-    echo "\n" >> ./stat/watt-idle-${BMSUFFIX}.txt
     eval "${BMEPCHCMD}" >> ./stat/watt-idle-${BMSUFFIX}.txt
     eval "${BMEPCHCMD}" > ./stat/watt-rc6_py-${BMSUFFIX}.txt
     eval "${BMTMOTCMD} ${BMPYLOOPLOC}"
-    echo "\n" >> ./stat/watt-rc6_py-${BMSUFFIX}.txt
     eval "${BMEPCHCMD}" >> ./stat/watt-rc6_py-${BMSUFFIX}.txt
     eval "${BMEPCHCMD}" > ./stat/watt-rc6_py_tsks-${BMSUFFIX}.txt
     eval "${BMTMOTCMD} ${BMTSKSCMD} ${BMPYLOOPLOC}"
-    echo " " >> ./stat/watt-rc6_py_tsks-${BMSUFFIX}.txt
     eval "${BMEPCHCMD}" >> ./stat/watt-rc6_py_tsks-${BMSUFFIX}.txt
     for f in ${BMCBINLOC} ; do
         eval "${BMEPCHCMD}" > ./stat/watt-${f##*/}-${BMSUFFIX}.txt
         eval "${BMTMOTCMD} ${f}"
-        echo "\n" >> ./stat/watt-${f##*/}-${BMSUFFIX}.txt
         eval "${BMEPCHCMD}" >> ./stat/watt-${f##*/}-${BMSUFFIX}.txt
         eval "${BMEPCHCMD}" > ./stat/watt-${f##*/}_tsks-${BMSUFFIX}.txt
         eval "${BMTMOTCMD} ${BMTSKSCMD} ${f}"
-        echo "\n" >> ./stat/watt-${f##*/}-${BMSUFFIX}.txt
         eval "${BMEPCHCMD}" >> ./stat/watt-${f##*/}_tsks-${BMSUFFIX}.txt
     done
     for f in ${BMLWCCBINLOC} ; do
         eval "${BMEPCHCMD}" > ./stat/watt-${f##*/}-${BMSUFFIX}.txt
         eval "${BMTMOTCMD} ${f}"
-        echo "\n" >> ./stat/watt-${f##*/}-${BMSUFFIX}.txt
         eval "${BMEPCHCMD}" >> ./stat/watt-${f##*/}-${BMSUFFIX}.txt
         eval "${BMEPCHCMD}" > ./stat/watt-${f##*/}_tsks-${BMSUFFIX}.txt
         eval "${BMTMOTCMD} ${BMTSKSCMD} ${f}"
-        echo "\n" >> ./stat/watt-${f##*/}-${BMSUFFIX}.txt
         eval "${BMEPCHCMD}" >> ./stat/watt-${f##*/}_tsks-${BMSUFFIX}.txt
     done
 }
