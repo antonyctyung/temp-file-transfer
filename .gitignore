@@ -5,6 +5,6 @@ project/lwc_c/photonbeetle_128
 */bin/*
 */obj/*
 */gmon.out
-*/*.pyc
+*.pyc
 gmon.out
 !.gitignore
